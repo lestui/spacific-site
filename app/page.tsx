@@ -172,7 +172,7 @@ export default function Home() {
           textAlign: "center",
           padding: "80px 24px",
           backgroundImage:
-            "linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), url('/hero-bg.jpg')",
+            "linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), url('/hero-bg.jpeg')",
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
@@ -346,12 +346,32 @@ export default function Home() {
             Send through your files, drawings, or idea and we’ll take a look.
           </p>
 
-          <a
-            href="mailto:spacificwoodworkcnc@gmail.com"
-            style={primaryButtonStyle}
-          >
-            Email Us Now
-          </a>
+          <div style={contactButtonRowStyle}>
+            <a
+              href="mailto:spacificwoodworkcnc@gmail.com"
+              style={primaryButtonStyle}
+            >
+              Email Us Now
+            </a>
+
+            <a
+              href="https://www.instagram.com/spacific_woodwork_cnc_nz/"
+              target="_blank"
+              rel="noreferrer"
+              style={socialButtonStyle}
+            >
+              Instagram
+            </a>
+
+            <a
+              href="https://www.facebook.com/Spacificwoodworkcnc/"
+              target="_blank"
+              rel="noreferrer"
+              style={socialButtonStyle}
+            >
+              Facebook
+            </a>
+          </div>
 
           <p
             style={{
@@ -595,4 +615,22 @@ const contactTextStyle = {
   color: "#d1d5db",
   fontSize: "1.08rem",
   lineHeight: 1.7,
+};
+
+const contactButtonRowStyle = {
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  gap: "14px",
+  flexWrap: "wrap" as const,
+};
+
+const socialButtonStyle = {
+  border: "1px solid rgba(255,255,255,0.18)",
+  padding: "16px 26px",
+  borderRadius: "14px",
+  color: "#ffffff",
+  textDecoration: "none",
+  fontWeight: 700,
+  display: "inline-block",
 };
