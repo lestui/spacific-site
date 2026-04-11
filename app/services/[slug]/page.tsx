@@ -7,64 +7,128 @@ const serviceData: Record<
     title: string;
     intro: string;
     heroImage: string;
-    portfolio: string[];
+    portfolio: { type: "image" | "video"; src: string; poster?: string }[];
   }
 > = {
   "cnc-routing": {
     title: "CNC Routing",
     intro:
       "Precision sheet cutting, routed components, repeat production, cabinetry parts, signage blanks, and custom one-off work.",
-    heroImage: "/service-cnc.jpg",
-    portfolio: ["/cnc1.jpg", "/cnc2.jpg", "/cnc3.jpg", "/cnc4.jpg"],
+    heroImage: "/images/services/service-cnc.jpg",
+    portfolio: [
+      { type: "image", src: "/images/work/work1.jpg" },
+      {
+        type: "video",
+        src: "/videos/service-cnc.mp4",
+        poster: "/images/services/service-cnc.jpg",
+      },
+      { type: "image", src: "/images/work/work2.jpg" },
+    ],
   },
   "cad-cam": {
     title: "CAD / CAM",
     intro:
       "From concept sketches to production-ready files, toolpaths, nesting, and practical workflow planning.",
-    heroImage: "/service-cad.jpg",
-    portfolio: ["/cad1.jpg", "/cad2.jpg", "/cad3.jpg", "/cad4.jpg"],
+    heroImage: "/images/services/service-cad.jpg",
+    portfolio: [
+      { type: "image", src: "/images/work/work1.jpg" },
+      {
+        type: "video",
+        src: "/videos/service-cad.mp4",
+        poster: "/images/services/service-cad.jpg",
+      },
+      { type: "image", src: "/images/work/work2.jpg" },
+    ],
   },
   fabrication: {
     title: "Fabrication",
     intro:
       "Custom builds, real-world parts, assemblies, and production support designed to get jobs done properly.",
-    heroImage: "/service-fabrication.jpg",
-    portfolio: ["/fab1.jpg", "/fab2.jpg", "/fab3.jpg", "/fab4.jpg"],
+    heroImage: "/images/services/service-fabrication.jpg",
+    portfolio: [
+      { type: "image", src: "/images/work/work2.jpg" },
+      {
+        type: "video",
+        src: "/videos/service-fabrication.mp4",
+        poster: "/images/services/service-fabrication.jpg",
+      },
+      { type: "image", src: "/images/work/work4.jpg" },
+    ],
   },
   "co2-laser": {
     title: "CO2 Laser",
     intro:
       "Acrylic cutting, engraving, detailed components, signage elements, and precision laser work for non-metal materials.",
-    heroImage: "/service-co2.jpg",
-    portfolio: ["/co21.jpg", "/co22.jpg", "/co23.jpg", "/co24.jpg"],
+    heroImage: "/images/services/service-co2.jpg",
+    portfolio: [
+      { type: "image", src: "/images/work/work3.jpg" },
+      {
+        type: "video",
+        src: "/videos/service-co2.mp4",
+        poster: "/images/services/service-co2.jpg",
+      },
+      { type: "image", src: "/images/work/work4.jpg" },
+    ],
   },
   "vinyl-cutting": {
     title: "Vinyl Cutting",
     intro:
       "Decals, graphics, lettering, branded applications, heat transfer work, and custom cut vinyl output.",
-    heroImage: "/service-vinyl.jpg",
-    portfolio: ["/vinyl1.jpg", "/vinyl2.jpg", "/vinyl3.jpg", "/vinyl4.jpg"],
+    heroImage: "/images/services/service-vinyl.jpg",
+    portfolio: [
+      { type: "image", src: "/images/work/work1.jpg" },
+      {
+        type: "video",
+        src: "/videos/service-vinyl.mp4",
+        poster: "/images/services/service-vinyl.jpg",
+      },
+      { type: "image", src: "/images/work/work2.jpg" },
+    ],
   },
   "3d-printing": {
     title: "3D Printing",
     intro:
       "Rapid prototyping, fit-check parts, development support, and custom printed components.",
-    heroImage: "/service-3dprint.jpg",
-    portfolio: ["/print1.jpg", "/print2.jpg", "/print3.jpg", "/print4.jpg"],
+    heroImage: "/images/services/service-3dprint.jpg",
+    portfolio: [
+      { type: "image", src: "/images/work/work2.jpg" },
+      {
+        type: "video",
+        src: "/videos/service-3dprint.mp4",
+        poster: "/images/services/service-3dprint.jpg",
+      },
+      { type: "image", src: "/images/work/work3.jpg" },
+    ],
   },
   "signage-display": {
     title: "Signage & Display",
     intro:
       "Custom signs, acrylic display work, event pieces, layered builds, and branded presentation work.",
-    heroImage: "/service-signage.jpg",
-    portfolio: ["/sign1.jpg", "/sign2.jpg", "/sign3.jpg", "/sign4.jpg"],
+    heroImage: "/images/services/service-signage.jpg",
+    portfolio: [
+      { type: "image", src: "/images/work/work1.jpg" },
+      {
+        type: "video",
+        src: "/videos/service-signage.mp4",
+        poster: "/images/services/service-signage.jpg",
+      },
+      { type: "image", src: "/images/work/work4.jpg" },
+    ],
   },
   "fiber-laser": {
     title: "Fiber Laser",
     intro:
       "Upcoming precision metal cutting capability focused on faster turnaround and higher-value fabrication work.",
-    heroImage: "/service-fiber.jpg",
-    portfolio: ["/fiber1.jpg", "/fiber2.jpg", "/fiber3.jpg", "/fiber4.jpg"],
+    heroImage: "/images/services/service-fiber.png",
+    portfolio: [
+      { type: "image", src: "/images/work/work3.jpg" },
+      {
+        type: "video",
+        src: "/videos/service-fiber.mp4",
+        poster: "/images/services/service-fiber.png",
+      },
+      { type: "image", src: "/images/work/work4.jpg" },
+    ],
   },
 };
 
@@ -118,7 +182,7 @@ export default async function ServicePage({
             }}
           >
             <img
-              src="/logo.png"
+              src="/images/logo.png"
               alt="SPACIFIC Woodwork & CNC"
               style={{ height: "52px", width: "auto" }}
             />
@@ -227,7 +291,7 @@ export default async function ServicePage({
               gap: "22px",
             }}
           >
-            {service.portfolio.map((image, index) => (
+            {service.portfolio.map((item, index) => (
               <div
                 key={index}
                 style={{
@@ -237,16 +301,34 @@ export default async function ServicePage({
                   border: "1px solid rgba(255,255,255,0.08)",
                 }}
               >
-                <img
-                  src={image}
-                  alt={`${service.title} example ${index + 1}`}
-                  style={{
-                    width: "100%",
-                    height: "280px",
-                    objectFit: "cover",
-                    display: "block",
-                  }}
-                />
+                {item.type === "image" ? (
+                  <img
+                    src={item.src}
+                    alt={`${service.title} example ${index + 1}`}
+                    style={{
+                      width: "100%",
+                      height: "280px",
+                      objectFit: "cover",
+                      display: "block",
+                    }}
+                  />
+                ) : (
+                  <video
+                    src={item.src}
+                    poster={item.poster}
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    preload="metadata"
+                    style={{
+                      width: "100%",
+                      height: "280px",
+                      objectFit: "cover",
+                      display: "block",
+                    }}
+                  />
+                )}
               </div>
             ))}
           </div>

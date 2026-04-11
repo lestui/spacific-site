@@ -7,68 +7,73 @@ export default function Home() {
       slug: "cnc-routing",
       description:
         "Precision sheet cutting, cabinetry components, signage, repeat production, and custom routed parts.",
-      video: "/service-cnc.mp4",
-      poster: "/service-cnc.jpg",
+      video: "/videos/service-cnc.mp4",
+      poster: "/images/services/service-cnc.jpg",
     },
     {
       title: "CAD / CAM",
       slug: "cad-cam",
       description:
         "From concept to production-ready files with efficient nesting, toolpath setup, and manufacturing workflow support.",
-      video: "/service-cad.mp4",
-      poster: "/service-cad.jpg",
+      video: "/videos/service-cad.mp4",
+      poster: "/images/services/service-cad.jpg",
     },
     {
       title: "Fabrication",
       slug: "fabrication",
       description:
         "Custom builds, one-offs, assemblies, and small batch manufacturing for real-world applications.",
-      video: "/service-fabrication.mp4",
-      poster: "/service-fabrication.jpg",
+      video: "/videos/service-fabrication.mp4",
+      poster: "/images/services/service-fabrication.jpg",
     },
     {
       title: "CO2 Laser",
       slug: "co2-laser",
       description:
         "Acrylic cutting, engraving, detailed custom pieces, display work, and precision non-metal laser processing.",
-      video: "/service-co2.mp4",
-      poster: "/service-co2.jpg",
+      video: "/videos/service-co2.mp4",
+      poster: "/images/services/service-co2.jpg",
     },
     {
       title: "Vinyl Cutting",
       slug: "vinyl-cutting",
       description:
         "Decals, branding, signage graphics, labels, heat transfer applications, and custom vinyl solutions.",
-      video: "/service-vinyl.mp4",
-      poster: "/service-vinyl.jpg",
+      video: "/videos/service-vinyl.mp4",
+      poster: "/images/services/service-vinyl.jpg",
     },
     {
       title: "3D Printing",
       slug: "3d-printing",
       description:
         "Rapid prototyping, custom parts, fit checks, and small printed components for product development.",
-      video: "/service-3dprint.mp4",
-      poster: "/service-3dprint.jpg",
+      video: "/videos/service-3dprint.mp4",
+      poster: "/images/services/service-3dprint.jpg",
     },
     {
       title: "Signage & Display",
       slug: "signage-display",
       description:
         "Custom signage, layered acrylic work, event props, and branded display pieces.",
-      video: "/service-signage.mp4",
-      poster: "/service-signage.jpg",
+      video: "/videos/service-signage.mp4",
+      poster: "/images/services/service-signage.jpg",
     },
     {
       title: "Fiber Laser",
       slug: "fiber-laser",
       description:
         "Expanding into precision metal cutting for faster turnaround and higher-value fabrication work.",
-      video: "/service-fiber.mp4",
-      poster: "/service-fiber.jpg",
+      video: "/videos/service-fiber.mp4",
+      poster: "/images/services/service-fiber.png",
     },
   ];
 
-  const workImages = ["/work1.jpg", "/work2.jpg", "/work3.jpg", "/work4.jpg"];
+  const recentWork = [
+    { type: "image", src: "/images/work/work1.jpg" },
+    { type: "image", src: "/images/work/work2.jpg" },
+    { type: "image", src: "/images/work/work3.jpg" },
+    { type: "image", src: "/images/work/work4.jpg" },
+  ];
 
   return (
     <main
@@ -111,7 +116,7 @@ export default function Home() {
             }}
           >
             <img
-              src="/logo.png"
+              src="/images/logo.png"
               alt="SPACIFIC Woodwork & CNC"
               style={{
                 height: "56px",
@@ -172,7 +177,7 @@ export default function Home() {
           textAlign: "center",
           padding: "80px 24px",
           backgroundImage:
-            "linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), url('/hero-bg.jpg')",
+            "linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), url('/images/hero-bg.jpg')",
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
@@ -258,7 +263,7 @@ export default function Home() {
                     <p style={cardDescStyle}>{service.description}</p>
                   </div>
 
-                  <div style={arrowStyle}>View Portfolio →</div>
+                  <div style={arrowStyle}>View Service →</div>
                 </div>
               </Link>
             ))}
@@ -303,12 +308,12 @@ export default function Home() {
           </div>
 
           <div style={gridStyle}>
-            {workImages.map((img, i) => (
+            {recentWork.map((item, i) => (
               <img
                 key={i}
-                src={img}
+                src={item.src}
                 alt={`Project ${i + 1}`}
-                style={workImageStyle}
+                style={workMediaStyle}
               />
             ))}
           </div>
@@ -533,7 +538,7 @@ const workSectionStyle = {
   background: "#111111",
 };
 
-const workImageStyle = {
+const workMediaStyle = {
   width: "100%",
   height: "280px",
   objectFit: "cover" as const,
