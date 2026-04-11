@@ -177,7 +177,7 @@ export default function Home() {
           textAlign: "center",
           padding: "80px 24px",
           backgroundImage:
-            "linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), url('/images/hero-bg.jpg')",
+            "linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), url('/images/hero-bg.png')",
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
