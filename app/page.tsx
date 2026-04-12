@@ -333,8 +333,7 @@ export default function Home() {
           <div>
             <p style={aboutTagStyle}>Why SPACIFIC</p>
             <h2 style={aboutTitleStyle}>
-              A practical fabrication partner for custom work and repeat
-              production.
+              Custom builds. Scalable solutions.
             </h2>
           </div>
 
@@ -352,7 +351,7 @@ export default function Home() {
       </section>
 
       <section id="contact" style={contactStyle}>
-        <div style={{ maxWidth: "800px", margin: "0 auto" }}>
+        <div style={{ maxWidth: "100%", margin: "0 auto" }}>
           <h2 style={contactTitleStyle}>Ready to get your project moving?</h2>
 
           <p style={contactTextStyle}>
