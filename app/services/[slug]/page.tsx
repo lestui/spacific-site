@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useMemo, useState } from "react";
 import { useParams } from "next/navigation";
+import InquiryForm from "@/components/InquiryForm";
 
 type PortfolioItem = {
   type: "image" | "video";
@@ -209,6 +210,7 @@ export default function ServicePage() {
   const slug = Array.isArray(params?.slug) ? params.slug[0] : params?.slug;
   const service = slug ? serviceData[String(slug)] : undefined;
   const [activeVideo, setActiveVideo] = useState<PortfolioItem | null>(null);
+  const [isInquiryOpen, setIsInquiryOpen] = useState(false);
 
   const uniquePortfolio = useMemo(() => {
     if (!service) return [];
@@ -301,19 +303,45 @@ export default function ServicePage() {
               <span style={{ fontWeight: 800 }}>SPACIFIC Woodwork & CNC</span>
             </Link>
 
-            <Link
-              href="/"
+            <div
               style={{
-                color: "#ffffff",
-                textDecoration: "none",
-                border: "1px solid rgba(255,255,255,0.18)",
-                padding: "10px 16px",
-                borderRadius: "12px",
-                fontWeight: 700,
+                display: "flex",
+                gap: "12px",
+                alignItems: "center",
+                flexWrap: "wrap",
               }}
             >
-              ← Back to Home
-            </Link>
+              <button
+                type="button"
+                onClick={() => setIsInquiryOpen(true)}
+                style={{
+                  background: "#e11d1d",
+                  color: "#ffffff",
+                  border: "none",
+                  padding: "10px 16px",
+                  borderRadius: "12px",
+                  fontWeight: 700,
+                  cursor: "pointer",
+                  fontSize: "1rem",
+                }}
+              >
+                Start Your Project
+              </button>
+
+              <Link
+                href="/"
+                style={{
+                  color: "#ffffff",
+                  textDecoration: "none",
+                  border: "1px solid rgba(255,255,255,0.18)",
+                  padding: "10px 16px",
+                  borderRadius: "12px",
+                  fontWeight: 700,
+                }}
+              >
+                ← Back to Home
+              </Link>
+            </div>
           </div>
         </header>
 
@@ -361,8 +389,9 @@ export default function ServicePage() {
             </p>
 
             <div style={{ marginTop: "28px" }}>
-              <a
-                href="mailto:spacificwoodworkcnc@gmail.com"
+              <button
+                type="button"
+                onClick={() => setIsInquiryOpen(true)}
                 style={{
                   background: "#e11d1d",
                   color: "#ffffff",
@@ -371,10 +400,13 @@ export default function ServicePage() {
                   borderRadius: "14px",
                   fontWeight: 800,
                   display: "inline-block",
+                  border: "none",
+                  cursor: "pointer",
+                  fontSize: "1rem",
                 }}
               >
-                Ask About This Service
-              </a>
+                Start Your Project
+              </button>
             </div>
           </div>
         </section>
@@ -386,15 +418,43 @@ export default function ServicePage() {
           }}
         >
           <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
-            <h2
+            <div
               style={{
-                fontSize: "clamp(1.8rem, 4vw, 3rem)",
-                fontWeight: 800,
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "end",
+                gap: "20px",
+                flexWrap: "wrap",
                 marginBottom: "28px",
               }}
             >
-              Example Work
-            </h2>
+              <h2
+                style={{
+                  fontSize: "clamp(1.8rem, 4vw, 3rem)",
+                  fontWeight: 800,
+                  margin: 0,
+                }}
+              >
+                Example Work
+              </h2>
+
+              <button
+                type="button"
+                onClick={() => setIsInquiryOpen(true)}
+                style={{
+                  background: "#e11d1d",
+                  color: "#ffffff",
+                  border: "none",
+                  padding: "14px 22px",
+                  borderRadius: "14px",
+                  fontWeight: 800,
+                  cursor: "pointer",
+                  fontSize: "1rem",
+                }}
+              >
+                Start Your Project
+              </button>
+            </div>
 
             <div
               style={{
@@ -485,6 +545,39 @@ export default function ServicePage() {
                 </div>
               ))}
             </div>
+
+            <div
+              style={{
+                marginTop: "38px",
+                background: "#0f0f0f",
+                border: "1px solid rgba(255,255,255,0.08)",
+                borderRadius: "24px",
+                padding: "24px",
+              }}
+            >
+              <h3
+                style={{
+                  fontSize: "clamp(1.5rem, 3vw, 2rem)",
+                  fontWeight: 800,
+                  marginTop: 0,
+                  marginBottom: "12px",
+                }}
+              >
+                Start Your Project
+              </h3>
+              <p
+                style={{
+                  color: "#d1d5db",
+                  lineHeight: 1.7,
+                  marginTop: 0,
+                  marginBottom: "22px",
+                }}
+              >
+                Send your files, drawings, or idea and we’ll take a look.
+              </p>
+
+              <InquiryForm projectType={service.title} />
+            </div>
           </div>
         </section>
       </main>
@@ -543,6 +636,80 @@ export default function ServicePage() {
                 display: "block",
               }}
             />
+          </div>
+        </div>
+      )}
+
+      {isInquiryOpen && (
+        <div
+          onClick={() => setIsInquiryOpen(false)}
+          style={{
+            position: "fixed",
+            inset: 0,
+            background: "rgba(0,0,0,0.92)",
+            zIndex: 10000,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            padding: "24px",
+          }}
+        >
+          <div
+            onClick={(e) => e.stopPropagation()}
+            style={{
+              width: "100%",
+              maxWidth: "760px",
+              background: "#0f0f0f",
+              border: "1px solid rgba(255,255,255,0.1)",
+              borderRadius: "24px",
+              padding: "24px",
+              position: "relative",
+              maxHeight: "92vh",
+              overflowY: "auto",
+            }}
+          >
+            <button
+              type="button"
+              onClick={() => setIsInquiryOpen(false)}
+              style={{
+                position: "absolute",
+                top: "18px",
+                right: "18px",
+                background: "transparent",
+                color: "#ffffff",
+                border: "1px solid rgba(255,255,255,0.2)",
+                borderRadius: "12px",
+                padding: "10px 14px",
+                cursor: "pointer",
+                fontWeight: 700,
+              }}
+            >
+              Close ✕
+            </button>
+
+            <div style={{ marginBottom: "24px" }}>
+              <h2
+                style={{
+                  fontSize: "clamp(1.8rem, 4vw, 2.6rem)",
+                  fontWeight: 800,
+                  margin: 0,
+                }}
+              >
+                Start Your Project
+              </h2>
+              <p
+                style={{
+                  marginTop: "12px",
+                  color: "#d1d5db",
+                  fontSize: "1rem",
+                  lineHeight: 1.7,
+                }}
+              >
+                Send your files, drawings, or idea and we’ll take a look.
+              </p>
+            </div>
+
+            <InquiryForm projectType={service.title} compact />
           </div>
         </div>
       )}

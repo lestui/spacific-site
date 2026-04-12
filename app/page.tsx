@@ -1,6 +1,12 @@
+"use client";
+
 import Link from "next/link";
+import { useState } from "react";
+import InquiryForm from "@/components/InquiryForm";
 
 export default function Home() {
+  const [isInquiryOpen, setIsInquiryOpen] = useState(false);
+
   const services = [
     {
       title: "CNC Routing",
@@ -76,352 +82,400 @@ export default function Home() {
   ];
 
   return (
-    <main
-      style={{
-        backgroundColor: "#111111",
-        color: "#ffffff",
-        fontFamily: "Arial, sans-serif",
-      }}
-    >
-      <header
+    <>
+      <main
         style={{
-          position: "sticky",
-          top: 0,
-          zIndex: 50,
-          background: "rgba(10,10,10,0.88)",
-          backdropFilter: "blur(10px)",
-          borderBottom: "1px solid rgba(255,255,255,0.08)",
+          backgroundColor: "#111111",
+          color: "#ffffff",
+          fontFamily: "Arial, sans-serif",
         }}
       >
-        <div
+        <header
           style={{
-            maxWidth: "1400px",
-            margin: "0 auto",
-            padding: "10px 20px",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            gap: "18px",
-            flexWrap: "wrap",
-            textAlign: "center",
+            position: "sticky",
+            top: 0,
+            zIndex: 50,
+            background: "rgba(10,10,10,0.88)",
+            backdropFilter: "blur(10px)",
+            borderBottom: "1px solid rgba(255,255,255,0.08)",
           }}
         >
-          <a
-            href="#top"
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              gap: "12px",
-              textDecoration: "none",
-              color: "#ffffff",
-              minWidth: 0,
-              flexWrap: "wrap",
-            }}
-          >
-            <img
-              src="/images/logo.png"
-              alt="SPACIFIC Woodwork & CNC"
-              style={{
-                height: "clamp(70px, 10vw, 150px)",
-                width: "auto",
-                objectFit: "contain",
-                display: "block",
-              }}
-            />
-            <span
-              style={{
-                fontSize: "clamp(0.95rem, 1.6vw, 1.1rem)",
-                fontWeight: 800,
-                letterSpacing: "0.5px",
-                lineHeight: 1.2,
-              }}
-            >
-              SPACIFIC Woodwork & CNC
-            </span>
-          </a>
-
-          <nav
-            style={{
-              display: "flex",
-              gap: "16px",
-              justifyContent: "center",
-              alignItems: "center",
-              flexWrap: "wrap",
-              width: "100%",
-            }}
-          >
-            <a href="#services" style={navLinkStyle}>
-              Services
-            </a>
-            <a href="#work" style={navLinkStyle}>
-              Work
-            </a>
-            <a href="#about" style={navLinkStyle}>
-              About
-            </a>
-            <a href="#contact" style={navLinkStyle}>
-              Contact
-            </a>
-
-            <a
-              href="mailto:spacificwoodworkcnc@gmail.com"
-              style={ctaNavStyle}
-            >
-              Get a Quote
-            </a>
-          </nav>
-        </div>
-      </header>
-
-      <section
-        id="top"
-        style={{
-          minHeight: "82vh",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          textAlign: "center",
-          padding: "56px 24px 80px",
-          backgroundImage:
-            "linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), url('/images/hero-bg.png')",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
-      >
-        <div style={{ maxWidth: "950px" }}>
-          <p style={heroTagStyle}>
-            CNC Routing • CAD / CAM • CO2 Laser • Vinyl Cutting • 3D Printing •
-            Fabrication
-          </p>
-
-          <h1 style={heroTitleStyle}>
-            Custom parts and fabrication built for real business needs.
-          </h1>
-
-          <p style={heroDescStyle}>
-            Precision CNC cutting, fabrication, and production-ready workflow
-            support for businesses that need clean execution, fast turnaround,
-            and repeatable quality.
-          </p>
-
-          <div style={heroBtnWrap}>
-            <a
-              href="mailto:spacificwoodworkcnc@gmail.com"
-              style={primaryButtonStyle}
-            >
-              Send Files for Quote
-            </a>
-
-            <a href="#services" style={secondaryButtonStyle}>
-              View Services
-            </a>
-          </div>
-
-          <p
-            style={{
-              marginTop: "28px",
-              fontSize: "1rem",
-              color: "#d1d5db",
-              lineHeight: 1.6,
-            }}
-          >
-            From concept to finished product — CAD, CAM, machining,
-            prototyping, signage, and custom production support.
-          </p>
-        </div>
-      </section>
-
-      <section id="services" style={servicesSectionStyle}>
-        <div style={{ maxWidth: "1280px", margin: "0 auto" }}>
-          <h2 style={sectionTitleStyle}>
-            Everything you need to move from idea to production.
-          </h2>
-
-          <p style={sectionDescStyle}>
-            Practical in-house capability across CNC routing, CAD/CAM,
-            fabrication, CO2 laser work, vinyl cutting, 3D printing, signage,
-            and custom production.
-          </p>
-
-          <div style={gridStyle}>
-            {services.map((service) => (
-              <Link
-                key={service.slug}
-                href={`/services/${service.slug}`}
-                style={serviceLinkStyle}
-              >
-                <div style={cardStyle}>
-                  <div>
-                    <div style={videoWrapStyle}>
-                      <video
-                        src={service.video}
-                        poster={service.poster}
-                        autoPlay
-                        muted
-                        loop
-                        playsInline
-                        preload="metadata"
-                        style={videoStyle}
-                      />
-                    </div>
-
-                    <h3 style={cardTitleStyle}>{service.title}</h3>
-                    <p style={cardDescStyle}>{service.description}</p>
-                  </div>
-
-                  <div style={arrowStyle}>View Service →</div>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section id="work" style={workSectionStyle}>
-        <div style={{ maxWidth: "1280px", margin: "0 auto" }}>
           <div
             style={{
+              maxWidth: "1400px",
+              margin: "0 auto",
+              padding: "10px 20px",
               display: "flex",
-              justifyContent: "space-between",
-              alignItems: "end",
-              gap: "20px",
+              justifyContent: "center",
+              alignItems: "center",
+              gap: "18px",
               flexWrap: "wrap",
-              marginBottom: "30px",
+              textAlign: "center",
             }}
           >
-            <div>
-              <p
+            <a
+              href="#top"
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: "12px",
+                textDecoration: "none",
+                color: "#ffffff",
+                minWidth: 0,
+                flexWrap: "wrap",
+              }}
+            >
+              <img
+                src="/images/logo.png"
+                alt="SPACIFIC Woodwork & CNC"
                 style={{
-                  color: "#9ca3af",
-                  textTransform: "uppercase",
-                  letterSpacing: "1px",
-                  marginBottom: "10px",
+                  height: "clamp(70px, 10vw, 150px)",
+                  width: "auto",
+                  objectFit: "contain",
+                  display: "block",
+                }}
+              />
+              <span
+                style={{
+                  fontSize: "clamp(0.95rem, 1.6vw, 1.1rem)",
+                  fontWeight: 800,
+                  letterSpacing: "0.5px",
+                  lineHeight: 1.2,
                 }}
               >
-                Recent Work
-              </p>
-              <h2 style={sectionTitleDark}>
-                Built to be used, not just looked at.
+                SPACIFIC Woodwork & CNC
+              </span>
+            </a>
+
+            <nav
+              style={{
+                display: "flex",
+                gap: "16px",
+                justifyContent: "center",
+                alignItems: "center",
+                flexWrap: "wrap",
+                width: "100%",
+              }}
+            >
+              <a href="#services" style={navLinkStyle}>
+                Services
+              </a>
+              <a href="#work" style={navLinkStyle}>
+                Work
+              </a>
+              <a href="#about" style={navLinkStyle}>
+                About
+              </a>
+              <a href="#contact" style={navLinkStyle}>
+                Contact
+              </a>
+
+              <button
+                type="button"
+                onClick={() => setIsInquiryOpen(true)}
+                style={ctaNavStyle}
+              >
+                Start Your Project
+              </button>
+            </nav>
+          </div>
+        </header>
+
+        <section
+          id="top"
+          style={{
+            minHeight: "82vh",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            textAlign: "center",
+            padding: "56px 24px 80px",
+            backgroundImage:
+              "linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), url('/images/hero-bg.png')",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+        >
+          <div style={{ maxWidth: "950px" }}>
+            <p style={heroTagStyle}>
+              CNC Routing • CAD / CAM • CO2 Laser • Vinyl Cutting • 3D Printing
+              • Fabrication
+            </p>
+
+            <h1 style={heroTitleStyle}>
+              Custom parts and fabrication built for real business needs.
+            </h1>
+
+            <p style={heroDescStyle}>
+              Precision CNC cutting, fabrication, and production-ready workflow
+              support for businesses that need clean execution, fast turnaround,
+              and repeatable quality.
+            </p>
+
+            <div style={heroBtnWrap}>
+              <button
+                type="button"
+                onClick={() => setIsInquiryOpen(true)}
+                style={primaryButtonStyle}
+              >
+                Start Your Project
+              </button>
+
+              <a href="#services" style={secondaryButtonStyle}>
+                View Services
+              </a>
+            </div>
+
+            <p
+              style={{
+                marginTop: "28px",
+                fontSize: "1rem",
+                color: "#d1d5db",
+                lineHeight: 1.6,
+              }}
+            >
+              From concept to finished product — CAD, CAM, machining,
+              prototyping, signage, and custom production support.
+            </p>
+          </div>
+        </section>
+
+        <section id="services" style={servicesSectionStyle}>
+          <div style={{ maxWidth: "1280px", margin: "0 auto" }}>
+            <h2 style={sectionTitleStyle}>
+              Everything you need to move from idea to production.
+            </h2>
+
+            <p style={sectionDescStyle}>
+              Practical in-house capability across CNC routing, CAD/CAM,
+              fabrication, CO2 laser work, vinyl cutting, 3D printing, signage,
+              and custom production.
+            </p>
+
+            <div style={gridStyle}>
+              {services.map((service) => (
+                <Link
+                  key={service.slug}
+                  href={`/services/${service.slug}`}
+                  style={serviceLinkStyle}
+                >
+                  <div style={cardStyle}>
+                    <div>
+                      <div style={videoWrapStyle}>
+                        <video
+                          src={service.video}
+                          poster={service.poster}
+                          autoPlay
+                          muted
+                          loop
+                          playsInline
+                          preload="metadata"
+                          style={videoStyle}
+                        />
+                      </div>
+
+                      <h3 style={cardTitleStyle}>{service.title}</h3>
+                      <p style={cardDescStyle}>{service.description}</p>
+                    </div>
+
+                    <div style={arrowStyle}>View Service →</div>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section id="work" style={workSectionStyle}>
+          <div style={{ maxWidth: "1280px", margin: "0 auto" }}>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "end",
+                gap: "20px",
+                flexWrap: "wrap",
+                marginBottom: "30px",
+              }}
+            >
+              <div>
+                <p
+                  style={{
+                    color: "#9ca3af",
+                    textTransform: "uppercase",
+                    letterSpacing: "1px",
+                    marginBottom: "10px",
+                  }}
+                >
+                  Recent Work
+                </p>
+                <h2 style={sectionTitleDark}>
+                  Built to be used, not just looked at.
+                </h2>
+              </div>
+
+              <button
+                type="button"
+                onClick={() => setIsInquiryOpen(true)}
+                style={primaryButtonStyle}
+              >
+                Start Your Project
+              </button>
+            </div>
+
+            <div style={gridStyle}>
+              {recentWork.map((item, i) => (
+                <img
+                  key={i}
+                  src={item.src}
+                  alt={`Project ${i + 1}`}
+                  style={workMediaStyle}
+                />
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section id="about" style={aboutSectionStyle}>
+          <div style={aboutGridStyle}>
+            <div>
+              <p style={aboutTagStyle}>Why SPACIFIC</p>
+              <h2 style={aboutTitleStyle}>
+                Custom builds. Scalable solutions.
               </h2>
             </div>
 
-            <a
-              href="mailto:spacificwoodworkcnc@gmail.com"
-              style={primaryButtonStyle}
-            >
-              Start Your Project
-            </a>
+            <div>
+              <p style={aboutTextStyle}>
+                We help customers move from sketch, drawing, or idea to
+                production-ready parts with clean workflow, efficient cutting,
+                and real manufacturing thinking behind the job. Whether it is
+                custom fabrication, signage, cabinetry components, prototyping,
+                or repeat production, the goal is simple: do it properly and do
+                it efficiently.
+              </p>
+            </div>
           </div>
+        </section>
 
-          <div style={gridStyle}>
-            {recentWork.map((item, i) => (
-              <img
-                key={i}
-                src={item.src}
-                alt={`Project ${i + 1}`}
-                style={workMediaStyle}
-              />
-            ))}
-          </div>
-        </div>
-      </section>
+        <section id="contact" style={contactStyle}>
+          <div style={{ maxWidth: "900px", margin: "0 auto" }}>
+            <h2 style={contactTitleStyle}>Ready to get your project moving?</h2>
 
-      <section id="about" style={aboutSectionStyle}>
-        <div style={aboutGridStyle}>
-          <div>
-            <p style={aboutTagStyle}>Why SPACIFIC</p>
-            <h2 style={aboutTitleStyle}>
-              Custom builds. Scalable solutions.
-            </h2>
-          </div>
-
-          <div>
-            <p style={aboutTextStyle}>
-              We help customers move from sketch, drawing, or idea to
-              production-ready parts with clean workflow, efficient cutting, and
-              real manufacturing thinking behind the job. Whether it is custom
-              fabrication, signage, cabinetry components, prototyping, or repeat
-              production, the goal is simple: do it properly and do it
-              efficiently.
+            <p style={contactTextStyle}>
+              Send through your files, drawings, or idea and we’ll take a look.
             </p>
+
+            <div style={contactButtonWrapStyle}>
+              <button
+                type="button"
+                onClick={() => setIsInquiryOpen(true)}
+                style={primaryButtonStyle}
+              >
+                Start Your Project
+              </button>
+
+              <a
+                href="mailto:spacificwoodworkcnc@gmail.com"
+                style={secondaryButtonStyle}
+              >
+                Email Us Directly
+              </a>
+            </div>
+
+            <div style={embeddedFormWrapStyle}>
+              <InquiryForm />
+            </div>
+
+            <p
+              style={{
+                marginTop: "20px",
+                color: "#9ca3af",
+                fontSize: "0.95rem",
+              }}
+            >
+              spacificwoodworkcnc@gmail.com
+            </p>
+
+            <div
+              style={{
+                marginTop: "24px",
+                display: "flex",
+                gap: "18px",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <a
+                href="https://www.instagram.com/spacific_woodwork_cnc_nz/"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={socialIconStyle}
+                aria-label="Instagram"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="white"
+                  width="22"
+                  height="22"
+                >
+                  <path d="M7.75 2C4.57 2 2 4.57 2 7.75v8.5C2 19.43 4.57 22 7.75 22h8.5C19.43 22 22 19.43 22 16.25v-8.5C22 4.57 19.43 2 16.25 2h-8.5zm0 2h8.5C18.55 4 20 5.45 20 7.75v8.5c0 2.3-1.45 3.75-3.75 3.75h-8.5C5.45 20 4 18.55 4 16.25v-8.5C4 5.45 5.45 4 7.75 4zm8.75 1.5a1.25 1.25 0 100 2.5 1.25 1.25 0 000-2.5zM12 7a5 5 0 100 10 5 5 0 000-10zm0 2a3 3 0 110 6 3 3 0 010-6z" />
+                </svg>
+              </a>
+
+              <a
+                href="https://www.facebook.com/Spacificwoodworkcnc/"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={socialIconStyle}
+                aria-label="Facebook"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="white"
+                  width="22"
+                  height="22"
+                >
+                  <path d="M13.5 22v-8h2.7l.4-3h-3.1V9.2c0-.9.3-1.5 1.6-1.5h1.7V5.1c-.3 0-1.4-.1-2.7-.1-2.6 0-4.3 1.6-4.3 4.5V11H7v3h2.8v8h3.7z" />
+                </svg>
+              </a>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </main>
 
-      <section id="contact" style={contactStyle}>
-        <div style={{ maxWidth: "100%", margin: "0 auto" }}>
-          <h2 style={contactTitleStyle}>Ready to get your project moving?</h2>
-
-          <p style={contactTextStyle}>
-            Send through your files, drawings, or idea and we’ll take a look.
-          </p>
-
-          <a
-            href="mailto:spacificwoodworkcnc@gmail.com"
-            style={primaryButtonStyle}
-          >
-            Email Us Now
-          </a>
-
-          <p
-            style={{
-              marginTop: "20px",
-              color: "#9ca3af",
-              fontSize: "0.95rem",
-            }}
-          >
-            spacificwoodworkcnc@gmail.com
-          </p>
-
+      {isInquiryOpen && (
+        <div
+          onClick={() => setIsInquiryOpen(false)}
+          style={modalOverlayStyle}
+        >
           <div
-            style={{
-              marginTop: "24px",
-              display: "flex",
-              gap: "18px",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
+            onClick={(e) => e.stopPropagation()}
+            style={modalCardStyle}
           >
-            <a
-              href="https://www.instagram.com/spacific_woodwork_cnc_nz/"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={socialIconStyle}
-              aria-label="Instagram"
+            <button
+              type="button"
+              onClick={() => setIsInquiryOpen(false)}
+              style={modalCloseStyle}
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="white"
-                width="22"
-                height="22"
-              >
-                <path d="M7.75 2C4.57 2 2 4.57 2 7.75v8.5C2 19.43 4.57 22 7.75 22h8.5C19.43 22 22 19.43 22 16.25v-8.5C22 4.57 19.43 2 16.25 2h-8.5zm0 2h8.5C18.55 4 20 5.45 20 7.75v8.5c0 2.3-1.45 3.75-3.75 3.75h-8.5C5.45 20 4 18.55 4 16.25v-8.5C4 5.45 5.45 4 7.75 4zm8.75 1.5a1.25 1.25 0 100 2.5 1.25 1.25 0 000-2.5zM12 7a5 5 0 100 10 5 5 0 000-10zm0 2a3 3 0 110 6 3 3 0 010-6z" />
-              </svg>
-            </a>
+              Close ✕
+            </button>
 
-            <a
-              href="https://www.facebook.com/Spacificwoodworkcnc/"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={socialIconStyle}
-              aria-label="Facebook"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="white"
-                width="22"
-                height="22"
-              >
-                <path d="M13.5 22v-8h2.7l.4-3h-3.1V9.2c0-.9.3-1.5 1.6-1.5h1.7V5.1c-.3 0-1.4-.1-2.7-.1-2.6 0-4.3 1.6-4.3 4.5V11H7v3h2.8v8h3.7z" />
-              </svg>
-            </a>
+            <div style={{ marginBottom: "24px" }}>
+              <h2 style={modalTitleStyle}>Start Your Project</h2>
+              <p style={modalTextStyle}>
+                Send your files, drawings, or idea and we’ll take a look.
+              </p>
+            </div>
+
+            <InquiryForm compact />
           </div>
         </div>
-      </section>
-    </main>
+      )}
+    </>
   );
 }
 
@@ -438,6 +492,9 @@ const ctaNavStyle = {
   color: "#ffffff",
   textDecoration: "none",
   fontWeight: 700,
+  border: "none",
+  cursor: "pointer",
+  fontSize: "1rem",
 };
 
 const heroTagStyle = {
@@ -482,6 +539,9 @@ const primaryButtonStyle = {
   textDecoration: "none",
   fontWeight: 800,
   display: "inline-block",
+  border: "none",
+  cursor: "pointer",
+  fontSize: "1rem",
 };
 
 const secondaryButtonStyle = {
@@ -492,6 +552,7 @@ const secondaryButtonStyle = {
   textDecoration: "none",
   fontWeight: 700,
   display: "inline-block",
+  background: "transparent",
 };
 
 const servicesSectionStyle = {
@@ -654,6 +715,23 @@ const contactTextStyle = {
   lineHeight: 1.7,
 };
 
+const contactButtonWrapStyle = {
+  display: "flex",
+  gap: "14px",
+  justifyContent: "center",
+  flexWrap: "wrap" as const,
+  marginBottom: "32px",
+};
+
+const embeddedFormWrapStyle = {
+  marginTop: "22px",
+  background: "#111111",
+  border: "1px solid rgba(255,255,255,0.08)",
+  borderRadius: "24px",
+  padding: "24px",
+  textAlign: "left" as const,
+};
+
 const socialIconStyle = {
   width: "46px",
   height: "46px",
@@ -664,4 +742,53 @@ const socialIconStyle = {
   justifyContent: "center",
   textDecoration: "none",
   transition: "all 0.2s ease",
+};
+
+const modalOverlayStyle = {
+  position: "fixed" as const,
+  inset: 0,
+  background: "rgba(0,0,0,0.92)",
+  zIndex: 9999,
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  padding: "24px",
+};
+
+const modalCardStyle = {
+  width: "100%",
+  maxWidth: "760px",
+  background: "#0f0f0f",
+  border: "1px solid rgba(255,255,255,0.1)",
+  borderRadius: "24px",
+  padding: "24px",
+  position: "relative" as const,
+  maxHeight: "92vh",
+  overflowY: "auto" as const,
+};
+
+const modalCloseStyle = {
+  position: "absolute" as const,
+  top: "18px",
+  right: "18px",
+  background: "transparent",
+  color: "#ffffff",
+  border: "1px solid rgba(255,255,255,0.2)",
+  borderRadius: "12px",
+  padding: "10px 14px",
+  cursor: "pointer",
+  fontWeight: 700,
+};
+
+const modalTitleStyle = {
+  fontSize: "clamp(1.8rem, 4vw, 2.6rem)",
+  fontWeight: 800,
+  margin: 0,
+};
+
+const modalTextStyle = {
+  marginTop: "12px",
+  color: "#d1d5db",
+  fontSize: "1rem",
+  lineHeight: 1.7,
 };
