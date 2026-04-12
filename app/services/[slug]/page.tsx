@@ -119,13 +119,13 @@ const serviceData: Record<
     title: "Fiber Laser",
     intro:
       "Upcoming precision metal cutting capability focused on faster turnaround and higher-value fabrication work.",
-    heroImage: "/images/services/service-fiber.png",
+    heroImage: "/images/services/service-fiber.jpg",
     portfolio: [
       { type: "image", src: "/images/work/work3.jpg" },
       {
         type: "video",
         src: "/videos/service-fiber.mp4",
-        poster: "/images/services/service-fiber.png",
+        poster: "/images/services/service-fiber.jpg",
       },
       { type: "image", src: "/images/work/work4.jpg" },
     ],
