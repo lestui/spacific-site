@@ -122,7 +122,7 @@ export default function Home() {
               src="/images/logo.png"
               alt="SPACIFIC Woodwork & CNC"
               style={{
-                height: "56px",
+                height: "120px",
                 width: "auto",
                 objectFit: "contain",
                 display: "block",
