@@ -99,10 +99,11 @@ export default function Home() {
             margin: "0 auto",
             padding: "10px 20px",
             display: "flex",
-            justifyContent: "space-between",
+            justifyContent: "center",
             alignItems: "center",
             gap: "18px",
             flexWrap: "wrap",
+            textAlign: "center",
           }}
         >
           <a
@@ -110,10 +111,12 @@ export default function Home() {
             style={{
               display: "flex",
               alignItems: "center",
+              justifyContent: "center",
               gap: "12px",
               textDecoration: "none",
               color: "#ffffff",
               minWidth: 0,
+              flexWrap: "wrap",
             }}
           >
             <img
@@ -142,9 +145,10 @@ export default function Home() {
             style={{
               display: "flex",
               gap: "16px",
-              justifyContent: "flex-end",
+              justifyContent: "center",
               alignItems: "center",
               flexWrap: "wrap",
+              width: "100%",
             }}
           >
             <a href="#services" style={navLinkStyle}>
@@ -369,6 +373,52 @@ export default function Home() {
           >
             spacificwoodworkcnc@gmail.com
           </p>
+
+          <div
+            style={{
+              marginTop: "24px",
+              display: "flex",
+              gap: "18px",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <a
+              href="https://www.instagram.com/spacific_woodwork_cnc_nz/"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={socialIconStyle}
+              aria-label="Instagram"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="white"
+                width="22"
+                height="22"
+              >
+                <path d="M7.75 2C4.57 2 2 4.57 2 7.75v8.5C2 19.43 4.57 22 7.75 22h8.5C19.43 22 22 19.43 22 16.25v-8.5C22 4.57 19.43 2 16.25 2h-8.5zm0 2h8.5C18.55 4 20 5.45 20 7.75v8.5c0 2.3-1.45 3.75-3.75 3.75h-8.5C5.45 20 4 18.55 4 16.25v-8.5C4 5.45 5.45 4 7.75 4zm8.75 1.5a1.25 1.25 0 100 2.5 1.25 1.25 0 000-2.5zM12 7a5 5 0 100 10 5 5 0 000-10zm0 2a3 3 0 110 6 3 3 0 010-6z" />
+              </svg>
+            </a>
+
+            <a
+              href="https://www.facebook.com/Spacificwoodworkcnc/"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={socialIconStyle}
+              aria-label="Facebook"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="white"
+                width="22"
+                height="22"
+              >
+                <path d="M13.5 22v-8h2.7l.4-3h-3.1V9.2c0-.9.3-1.5 1.6-1.5h1.7V5.1c-.3 0-1.4-.1-2.7-.1-2.6 0-4.3 1.6-4.3 4.5V11H7v3h2.8v8h3.7z" />
+              </svg>
+            </a>
+          </div>
         </div>
       </section>
     </main>
@@ -602,4 +652,16 @@ const contactTextStyle = {
   color: "#d1d5db",
   fontSize: "1.08rem",
   lineHeight: 1.7,
+};
+
+const socialIconStyle = {
+  width: "46px",
+  height: "46px",
+  borderRadius: "50%",
+  border: "1px solid rgba(255,255,255,0.2)",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  textDecoration: "none",
+  transition: "all 0.2s ease",
 };
