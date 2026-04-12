@@ -97,13 +97,12 @@ export default function Home() {
           style={{
             maxWidth: "1400px",
             margin: "0 auto",
-            padding: "16px 24px",
+            padding: "10px 20px",
             display: "flex",
-            justifyContent: "center",
+            justifyContent: "space-between",
             alignItems: "center",
-            gap: "20px",
+            gap: "18px",
             flexWrap: "wrap",
-            textAlign: "center",
           }}
         >
           <a
@@ -111,18 +110,17 @@ export default function Home() {
             style={{
               display: "flex",
               alignItems: "center",
-              justifyContent: "center",
               gap: "12px",
               textDecoration: "none",
               color: "#ffffff",
-              flexWrap: "wrap",
+              minWidth: 0,
             }}
           >
             <img
               src="/images/logo.png"
               alt="SPACIFIC Woodwork & CNC"
               style={{
-                height: "120px",
+                height: "clamp(70px, 10vw, 150px)",
                 width: "auto",
                 objectFit: "contain",
                 display: "block",
@@ -130,9 +128,10 @@ export default function Home() {
             />
             <span
               style={{
-                fontSize: "1.1rem",
+                fontSize: "clamp(0.95rem, 1.6vw, 1.1rem)",
                 fontWeight: 800,
                 letterSpacing: "0.5px",
+                lineHeight: 1.2,
               }}
             >
               SPACIFIC Woodwork & CNC
@@ -142,11 +141,10 @@ export default function Home() {
           <nav
             style={{
               display: "flex",
-              gap: "18px",
-              justifyContent: "center",
+              gap: "16px",
+              justifyContent: "flex-end",
               alignItems: "center",
               flexWrap: "wrap",
-              width: "100%",
             }}
           >
             <a href="#services" style={navLinkStyle}>
@@ -164,10 +162,7 @@ export default function Home() {
 
             <a
               href="mailto:spacificwoodworkcnc@gmail.com"
-              style={{
-                ...ctaNavStyle,
-                marginTop: "6px",
-              }}
+              style={ctaNavStyle}
             >
               Get a Quote
             </a>
@@ -178,12 +173,12 @@ export default function Home() {
       <section
         id="top"
         style={{
-          minHeight: "88vh",
+          minHeight: "82vh",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
           textAlign: "center",
-          padding: "80px 24px",
+          padding: "56px 24px 80px",
           backgroundImage:
             "linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), url('/images/hero-bg.png')",
           backgroundSize: "cover",
