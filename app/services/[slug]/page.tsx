@@ -151,7 +151,7 @@ const serviceData: Record<string, ServiceEntry> = {
     title: "3D Printing",
     intro:
       "Rapid prototyping, fit-check parts, development support, and custom printed components.",
-    heroImage: "/images/services/cad-1.jpg",
+    heroImage: "/images/services/3dprint.jpg",
     portfolio: [
       {
         type: "video",
