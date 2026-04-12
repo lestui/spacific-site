@@ -8,7 +8,7 @@ export default function Home() {
       description:
         "Precision sheet cutting, cabinetry components, signage, repeat production, and custom routed parts.",
       video: "/videos/service-cnc.mp4",
-      poster: "/images/services/service-cnc.jpg",
+      poster: "/images/services/cnc-1.jpg",
     },
     {
       title: "CAD / CAM",
@@ -16,7 +16,7 @@ export default function Home() {
       description:
         "From concept to production-ready files with efficient nesting, toolpath setup, and manufacturing workflow support.",
       video: "/videos/service-cad.mp4",
-      poster: "/images/services/service-cad.jpg",
+      poster: "/images/services/cad-1.jpg",
     },
     {
       title: "Fabrication",
@@ -32,7 +32,7 @@ export default function Home() {
       description:
         "Acrylic cutting, engraving, detailed custom pieces, display work, and precision non-metal laser processing.",
       video: "/videos/service-co2.mp4",
-      poster: "/images/services/service-co2.jpg",
+      poster: "/images/services/co2-1.jpg",
     },
     {
       title: "Vinyl Cutting",
@@ -48,7 +48,7 @@ export default function Home() {
       description:
         "Rapid prototyping, custom parts, fit checks, and small printed components for product development.",
       video: "/videos/service-3dprint.mp4",
-      poster: "/images/services/service-3dprint.jpg",
+      poster: "/images/services/cad-1.jpg",
     },
     {
       title: "Signage & Display",
@@ -69,10 +69,10 @@ export default function Home() {
   ];
 
   const recentWork = [
-    { type: "image", src: "/images/work/work1.jpg" },
-    { type: "image", src: "/images/work/work2.jpg" },
-    { type: "image", src: "/images/work/work3.jpg" },
-    { type: "image", src: "/images/work/work4.jpg" },
+    { type: "image", src: "/images/services/co2-1.jpg" },
+    { type: "image", src: "/images/services/service-signage.jpg" },
+    { type: "image", src: "/images/services/vinyl-1.jpg" },
+    { type: "image", src: "/images/services/cnc-2.jpg" },
   ];
 
   return (
