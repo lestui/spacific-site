@@ -95,148 +95,163 @@ export default function Home() {
             position: "sticky",
             top: 0,
             zIndex: 50,
-            background: "rgba(10,10,10,0.88)",
+            background: "rgba(10,10,10,0.9)",
             backdropFilter: "blur(10px)",
             borderBottom: "1px solid rgba(255,255,255,0.08)",
           }}
         >
           <div
             style={{
-              maxWidth: "1400px",
+              maxWidth: "1440px",
               margin: "0 auto",
-              padding: "10px 20px",
+              padding: "14px 20px",
               display: "flex",
-              justifyContent: "center",
               alignItems: "center",
+              justifyContent: "space-between",
               gap: "18px",
               flexWrap: "wrap",
-              textAlign: "center",
             }}
           >
-            <a
-              href="#top"
+            <div
               style={{
                 display: "flex",
                 alignItems: "center",
-                justifyContent: "center",
-                gap: "12px",
-                textDecoration: "none",
-                color: "#ffffff",
-                minWidth: 0,
+                gap: "22px",
                 flexWrap: "wrap",
               }}
             >
-              <img
-                src="/images/logo.png"
-                alt="SPACIFIC Woodwork & CNC"
+              <Link
+                href="/"
                 style={{
-                  height: "clamp(70px, 10vw, 150px)",
-                  width: "auto",
-                  objectFit: "contain",
-                  display: "block",
-                }}
-              />
-              <span
-                style={{
-                  fontSize: "clamp(0.95rem, 1.6vw, 1.1rem)",
-                  fontWeight: 800,
-                  letterSpacing: "0.5px",
-                  lineHeight: 1.2,
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "12px",
+                  textDecoration: "none",
+                  color: "#ffffff",
                 }}
               >
-                SPACIFIC Woodwork & CNC
-              </span>
-            </a>
+                <img
+                  src="/images/logo.png"
+                  alt="SPACIFIC Woodwork & CNC"
+                  style={{
+                    height: "44px",
+                    width: "auto",
+                    objectFit: "contain",
+                    display: "block",
+                  }}
+                />
+                <span
+                  style={{
+                    fontWeight: 800,
+                    fontSize: "1rem",
+                    letterSpacing: "0.4px",
+                    whiteSpace: "nowrap",
+                  }}
+                >
+                  SPACIFIC WOODWORK
+                </span>
+              </Link>
 
-            <nav
+              <nav
+                style={{
+                  display: "flex",
+                  gap: "24px",
+                  alignItems: "center",
+                  flexWrap: "wrap",
+                }}
+              >
+                <a href="#services" style={navLinkStyle}>
+                  SERVICES
+                </a>
+                <a href="#work" style={navLinkStyle}>
+                  WORK
+                </a>
+                <a href="#about" style={navLinkStyle}>
+                  ABOUT
+                </a>
+                <a href="#contact" style={navLinkStyle}>
+                  CONTACT
+                </a>
+              </nav>
+            </div>
+
+            <div
               style={{
                 display: "flex",
-                gap: "16px",
-                justifyContent: "center",
                 alignItems: "center",
+                gap: "14px",
                 flexWrap: "wrap",
-                width: "100%",
+                justifyContent: "flex-end",
               }}
             >
-              <a href="#services" style={navLinkStyle}>
-                Services
-              </a>
-              <a href="#work" style={navLinkStyle}>
-                Work
-              </a>
-              <a href="#about" style={navLinkStyle}>
-                About
-              </a>
-              <a href="#contact" style={navLinkStyle}>
-                Contact
-              </a>
+              <p
+                style={{
+                  margin: 0,
+                  color: "#d1d5db",
+                  fontSize: "0.9rem",
+                  whiteSpace: "nowrap",
+                }}
+              >
+                Auckland based custom fabrication
+              </p>
+
+              <div style={searchWrapStyle}>
+                <input
+                  type="text"
+                  placeholder="Search..."
+                  style={searchInputStyle}
+                />
+              </div>
 
               <button
                 type="button"
                 onClick={() => setIsInquiryOpen(true)}
-                style={ctaNavStyle}
+                style={headerCtaStyle}
               >
-                Start Your Project
+                GET STARTED
               </button>
-            </nav>
+            </div>
           </div>
         </header>
 
         <section
           id="top"
           style={{
-            minHeight: "82vh",
+            minHeight: "88vh",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
             textAlign: "center",
-            padding: "56px 24px 80px",
+            padding: "80px 24px 100px",
             backgroundImage:
-              "linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), url('/images/hero-bg.png')",
+              "linear-gradient(rgba(0,0,0,0.68), rgba(0,0,0,0.68)), url('/images/hero-bg.png')",
             backgroundSize: "cover",
             backgroundPosition: "center",
           }}
         >
-          <div style={{ maxWidth: "950px" }}>
-            <p style={heroTagStyle}>
-              CNC Routing • CAD / CAM • CO2 Laser • Vinyl Cutting • 3D Printing
-              • Fabrication
-            </p>
-
+          <div style={{ maxWidth: "980px" }}>
             <h1 style={heroTitleStyle}>
-              Custom parts and fabrication built for real business needs.
+              Custom parts and fabrication delivered fast.
             </h1>
 
             <p style={heroDescStyle}>
-              Precision CNC cutting, fabrication, and production-ready workflow
-              support for businesses that need clean execution, fast turnaround,
-              and repeatable quality.
+              CNC routing, CAD/CAM, CO2 laser, vinyl cutting, signage, 3D
+              printing, and fabrication support for customers who need practical
+              results and clean execution.
             </p>
 
             <div style={heroBtnWrap}>
               <button
                 type="button"
                 onClick={() => setIsInquiryOpen(true)}
-                style={primaryButtonStyle}
+                style={heroPrimaryButtonStyle}
               >
-                Start Your Project
+                GET STARTED
               </button>
-
-              <a href="#services" style={secondaryButtonStyle}>
-                View Services
-              </a>
             </div>
 
-            <p
-              style={{
-                marginTop: "28px",
-                fontSize: "1rem",
-                color: "#d1d5db",
-                lineHeight: 1.6,
-              }}
-            >
-              From concept to finished product — CAD, CAM, machining,
-              prototyping, signage, and custom production support.
+            <p style={heroSubLinkStyle}>
+              Send your files, drawings, or idea and we’ll take a look.
             </p>
           </div>
         </section>
@@ -318,9 +333,9 @@ export default function Home() {
               <button
                 type="button"
                 onClick={() => setIsInquiryOpen(true)}
-                style={primaryButtonStyle}
+                style={heroPrimaryButtonStyle}
               >
-                Start Your Project
+                GET STARTED
               </button>
             </div>
 
@@ -371,9 +386,9 @@ export default function Home() {
               <button
                 type="button"
                 onClick={() => setIsInquiryOpen(true)}
-                style={primaryButtonStyle}
+                style={heroPrimaryButtonStyle}
               >
-                Start Your Project
+                GET STARTED
               </button>
 
               <a
@@ -452,10 +467,7 @@ export default function Home() {
           onClick={() => setIsInquiryOpen(false)}
           style={modalOverlayStyle}
         >
-          <div
-            onClick={(e) => e.stopPropagation()}
-            style={modalCardStyle}
-          >
+          <div onClick={(e) => e.stopPropagation()} style={modalCardStyle}>
             <button
               type="button"
               onClick={() => setIsInquiryOpen(false)}
@@ -464,10 +476,22 @@ export default function Home() {
               Close ✕
             </button>
 
-            <div style={{ marginBottom: "24px" }}>
+            <div
+              style={{
+                marginBottom: "24px",
+                textAlign: "center",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+            >
               <h2 style={modalTitleStyle}>Start Your Project</h2>
               <p style={modalTextStyle}>
                 Send your files, drawings, or idea and we’ll take a look.
+              </p>
+              <p style={modalSubTextStyle}>
+                We review practical job details fast so you can move forward
+                sooner.
               </p>
             </div>
 
@@ -482,43 +506,59 @@ export default function Home() {
 const navLinkStyle = {
   color: "#ffffff",
   textDecoration: "none",
-  fontWeight: 600,
+  fontWeight: 700,
+  fontSize: "0.9rem",
+  letterSpacing: "0.4px",
 };
 
-const ctaNavStyle = {
+const headerCtaStyle = {
   background: "#e11d1d",
-  padding: "12px 18px",
+  padding: "12px 20px",
   borderRadius: "12px",
   color: "#ffffff",
   textDecoration: "none",
-  fontWeight: 700,
+  fontWeight: 800,
   border: "none",
   cursor: "pointer",
-  fontSize: "1rem",
-};
-
-const heroTagStyle = {
-  color: "#d1d5db",
-  marginBottom: "20px",
-  textTransform: "uppercase" as const,
-  letterSpacing: "1px",
   fontSize: "0.95rem",
 };
 
+const searchWrapStyle = {
+  background: "#f3f4f6",
+  borderRadius: "12px",
+  padding: "0 14px",
+  height: "42px",
+  display: "flex",
+  alignItems: "center",
+  minWidth: "190px",
+};
+
+const searchInputStyle = {
+  border: "none",
+  outline: "none",
+  background: "transparent",
+  width: "100%",
+  fontSize: "0.95rem",
+  color: "#111111",
+};
+
 const heroTitleStyle = {
-  fontSize: "clamp(2.7rem, 6vw, 5.5rem)",
+  fontSize: "clamp(3rem, 7vw, 6.2rem)",
   fontWeight: 900,
   lineHeight: 0.95,
   letterSpacing: "-2px",
   margin: 0,
+  maxWidth: "900px",
+  marginLeft: "auto",
+  marginRight: "auto",
 };
 
 const heroDescStyle = {
   marginTop: "24px",
-  fontSize: "1.2rem",
-  color: "#e5e7eb",
+  fontSize: "1.25rem",
+  color: "#f3f4f6",
   lineHeight: 1.7,
-  maxWidth: "760px",
+  maxWidth: "820px",
   marginLeft: "auto",
   marginRight: "auto",
 };
@@ -531,9 +571,9 @@ const heroBtnWrap = {
   flexWrap: "wrap" as const,
 };
 
-const primaryButtonStyle = {
+const heroPrimaryButtonStyle = {
   background: "#e11d1d",
-  padding: "16px 26px",
+  padding: "18px 34px",
   borderRadius: "14px",
   color: "#ffffff",
   textDecoration: "none",
@@ -542,6 +582,13 @@ const primaryButtonStyle = {
   border: "none",
   cursor: "pointer",
   fontSize: "1rem",
+};
+
+const heroSubLinkStyle = {
+  marginTop: "28px",
+  fontSize: "1rem",
+  color: "#ffffff",
+  lineHeight: 1.6,
 };
 
 const secondaryButtonStyle = {
@@ -784,6 +831,7 @@ const modalTitleStyle = {
   fontSize: "clamp(1.8rem, 4vw, 2.6rem)",
   fontWeight: 800,
   margin: 0,
+  textAlign: "center" as const,
 };
 
 const modalTextStyle = {
@@ -791,4 +839,16 @@ const modalTextStyle = {
   color: "#d1d5db",
   fontSize: "1rem",
   lineHeight: 1.7,
+  textAlign: "center" as const,
+  maxWidth: "560px",
+};
+
+const modalSubTextStyle = {
+  marginTop: "8px",
+  color: "#ffffff",
+  fontSize: "0.95rem",
+  lineHeight: 1.6,
+  fontWeight: 700,
+  textAlign: "center" as const,
+  maxWidth: "560px",
 };

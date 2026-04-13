@@ -388,6 +388,19 @@ export default function ServicePage() {
               {service.intro}
             </p>
 
+            <p
+              style={{
+                marginTop: "14px",
+                maxWidth: "760px",
+                fontSize: "1rem",
+                lineHeight: 1.7,
+                color: "#ffffff",
+                fontWeight: 700,
+              }}
+            >
+              Send your files, drawings, or idea and we’ll take a look.
+            </p>
+
             <div style={{ marginTop: "28px" }}>
               <button
                 type="button"
@@ -570,10 +583,21 @@ export default function ServicePage() {
                   color: "#d1d5db",
                   lineHeight: 1.7,
                   marginTop: 0,
-                  marginBottom: "22px",
+                  marginBottom: "8px",
                 }}
               >
                 Send your files, drawings, or idea and we’ll take a look.
+              </p>
+              <p
+                style={{
+                  color: "#ffffff",
+                  lineHeight: 1.6,
+                  fontWeight: 700,
+                  marginTop: 0,
+                  marginBottom: "22px",
+                }}
+              >
+                The more detail you send, the faster we can review it properly.
               </p>
 
               <InquiryForm projectType={service.title} />
@@ -706,6 +730,18 @@ export default function ServicePage() {
                 }}
               >
                 Send your files, drawings, or idea and we’ll take a look.
+              </p>
+              <p
+                style={{
+                  marginTop: "8px",
+                  color: "#ffffff",
+                  fontSize: "0.95rem",
+                  lineHeight: 1.6,
+                  fontWeight: 700,
+                }}
+              >
+                We review practical job details fast so you can move forward
+                sooner.
               </p>
             </div>
 

@@ -1,208 +1,214 @@
 "use client";
 
-import { FormEvent } from "react";
+import { useState, FormEvent } from "react";
 
-type InquiryFormProps = {
+type Props = {
   projectType?: string;
   compact?: boolean;
 };
 
-const formAction = "https://formspree.io/f/maqawlng";
+export default function InquiryForm({ projectType = "", compact = false }: Props) {
+  const [submitted, setSubmitted] = useState(false);
+  const [sending, setSending] = useState(false);
 
-export default function InquiryForm({
-  projectType = "",
-  compact = false,
-}: InquiryFormProps) {
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-    const form = event.currentTarget;
-    const fileInput = form.querySelector(
-      'input[type="file"][name="attachment"]'
-    ) as HTMLInputElement | null;
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
 
-    if (fileInput && fileInput.files && fileInput.files.length > 0) {
-      const totalBytes = Array.from(fileInput.files).reduce(
-        (sum, file) => sum + file.size,
-        0
-      );
+    const form = e.currentTarget;
+    const data = new FormData(form);
 
-      const maxBytes = 10 * 1024 * 1024;
+    setSending(true);
 
-      if (totalBytes > maxBytes) {
-        event.preventDefault();
-        alert("Please keep total file upload size under 10MB.");
+    try {
+      const response = await fetch("https://formspree.io/f/maqawlng", {
+        method: "POST",
+        body: data,
+        headers: {
+          Accept: "application/json",
+        },
+      });
+
+      if (response.ok) {
+        setSubmitted(true);
+        form.reset();
+      } else {
+        alert("Something went wrong. Try again or call or email us directly.");
       }
+    } catch {
+      alert("Something went wrong. Try again or call or email us directly.");
+    } finally {
+      setSending(false);
     }
   };
 
+  if (submitted) {
+    return (
+      <div style={successWrap}>
+        <h3 style={successTitle}>Project received — we’re onto it</h3>
+
+        <p style={successText}>Thanks — we’ve got your project.</p>
+
+        <p style={successText}>
+          We’ll review your project and get back to you within{" "}
+          <strong style={successStrong}>24 hours</strong>.
+        </p>
+
+        <p style={successSub}>
+          Most jobs are quoted same-day — we’ll confirm availability in our reply.
+        </p>
+
+        <p style={trustText}>
+          Trusted for CNC, fabrication, and production-ready work across Auckland.
+        </p>
+
+        <div style={ctaBlock}>
+          <p style={urgentText}>Need it urgent?</p>
+
+          <a href="tel:0212487664" style={callButton}>
+            Call or Text Now
+          </a>
+
+          <p style={phoneText}>021 248 7664</p>
+
+          <p style={emailText}>
+            or email <strong style={successStrong}>spacificwoodworkcnc@gmail.com</strong>
+          </p>
+        </div>
+      </div>
+    );
+  }
+
   return (
-    <form
-      action={formAction}
-      method="POST"
-      encType="multipart/form-data"
-      onSubmit={handleSubmit}
-      style={{
-        display: "grid",
-        gap: compact ? "14px" : "16px",
-      }}
-    >
-      <input type="hidden" name="_subject" value="New website project enquiry" />
-      <input type="hidden" name="_captcha" value="false" />
-      <input type="hidden" name="source" value="website" />
+    <form onSubmit={handleSubmit} style={{ display: "grid", gap: "16px" }}>
+      <input type="hidden" name="projectType" value={projectType} />
 
-      <div style={fieldGridStyle}>
-        <label style={labelWrapStyle}>
-          <span style={labelStyle}>First Name</span>
-          <input
-            type="text"
-            name="firstName"
-            required
-            placeholder="Your first name"
-            style={inputStyle}
-          />
-        </label>
+      <input name="name" placeholder="Your name" required style={input} />
+      <input name="email" type="email" placeholder="Email" required style={input} />
+      <input name="phone" placeholder="Phone (optional)" style={input} />
 
-        <label style={labelWrapStyle}>
-          <span style={labelStyle}>Email</span>
-          <input
-            type="email"
-            name="email"
-            required
-            placeholder="you@example.com"
-            style={inputStyle}
-          />
-        </label>
-      </div>
+      <select name="service" defaultValue="" style={input}>
+        <option value="" disabled>
+          Select service
+        </option>
+        <option>CNC Routing</option>
+        <option>CAD / CAM</option>
+        <option>Fabrication</option>
+        <option>CO2 Laser</option>
+        <option>Vinyl Cutting</option>
+        <option>3D Printing</option>
+        <option>Signage</option>
+        <option>Fiber Laser</option>
+      </select>
 
-      <div style={fieldGridStyle}>
-        <label style={labelWrapStyle}>
-          <span style={labelStyle}>Phone</span>
-          <input
-            type="tel"
-            name="phone"
-            placeholder="021..."
-            style={inputStyle}
-          />
-        </label>
+      <textarea
+        name="message"
+        placeholder="Tell us about your project..."
+        required
+        rows={compact ? 4 : 6}
+        style={textarea}
+      />
 
-        <label style={labelWrapStyle}>
-          <span style={labelStyle}>Project Type</span>
-          <select
-            name="projectType"
-            defaultValue={projectType}
-            style={inputStyle}
-          >
-            <option value="">Select a service</option>
-            <option value="CNC Routing">CNC Routing</option>
-            <option value="CAD / CAM">CAD / CAM</option>
-            <option value="Fabrication">Fabrication</option>
-            <option value="CO2 Laser">CO2 Laser</option>
-            <option value="Vinyl Cutting">Vinyl Cutting</option>
-            <option value="3D Printing">3D Printing</option>
-            <option value="Signage & Display">Signage & Display</option>
-            <option value="Fiber Laser">Fiber Laser</option>
-            <option value="Not Sure">Not Sure</option>
-          </select>
-        </label>
-      </div>
-
-      <label style={labelWrapStyle}>
-        <span style={labelStyle}>Project Details</span>
-        <textarea
-          name="message"
-          required
-          rows={compact ? 5 : 6}
-          placeholder="Tell us what you need made, sizes, quantities, materials, deadline, and anything else that helps."
-          style={textareaStyle}
-        />
-      </label>
-
-      <label style={labelWrapStyle}>
-        <span style={labelStyle}>Upload Files</span>
-        <input
-          type="file"
-          name="attachment"
-          multiple
-          accept=".pdf,.dxf,.svg,.ai,.eps,.jpg,.jpeg,.png,.webp,.zip"
-          style={fileInputStyle}
-        />
-        <span style={helperTextStyle}>
-          Optional. Drawings, photos, vectors, or reference files. Keep total
-          upload size under 10MB.
-        </span>
-      </label>
-
-      <button type="submit" style={submitButtonStyle}>
-        Start Your Project
+      <button type="submit" style={button} disabled={sending}>
+        {sending ? "Sending..." : "Start Your Project"}
       </button>
     </form>
   );
 }
 
-const fieldGridStyle = {
-  display: "grid",
-  gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
-  gap: "16px",
-};
-
-const labelWrapStyle = {
-  display: "grid",
-  gap: "8px",
-};
-
-const labelStyle = {
-  fontSize: "0.95rem",
-  fontWeight: 700,
-  color: "#ffffff",
-};
-
-const inputStyle = {
+const input = {
+  padding: "14px",
+  borderRadius: "10px",
+  border: "1px solid #333",
+  background: "#111",
+  color: "#fff",
   width: "100%",
-  background: "#151515",
-  color: "#ffffff",
-  border: "1px solid rgba(255,255,255,0.14)",
-  borderRadius: "14px",
-  padding: "14px 16px",
-  fontSize: "1rem",
-  outline: "none",
+  boxSizing: "border-box" as const,
 };
 
-const textareaStyle = {
-  width: "100%",
-  background: "#151515",
-  color: "#ffffff",
-  border: "1px solid rgba(255,255,255,0.14)",
-  borderRadius: "14px",
-  padding: "14px 16px",
-  fontSize: "1rem",
-  outline: "none",
-  resize: "vertical" as const,
-  fontFamily: "Arial, sans-serif",
+const textarea = {
+  ...input,
 };
 
-const fileInputStyle = {
-  width: "100%",
-  background: "#151515",
-  color: "#d1d5db",
-  border: "1px solid rgba(255,255,255,0.14)",
-  borderRadius: "14px",
-  padding: "12px 16px",
-  fontSize: "0.96rem",
-};
-
-const helperTextStyle = {
-  fontSize: "0.88rem",
-  color: "#9ca3af",
-  lineHeight: 1.5,
-};
-
-const submitButtonStyle = {
-  background: "#e11d1d",
-  padding: "16px 26px",
-  borderRadius: "14px",
-  color: "#ffffff",
+const button = {
+  padding: "16px",
+  borderRadius: "12px",
   border: "none",
-  fontWeight: 800,
-  fontSize: "1rem",
+  background: "#e11d1d",
+  color: "#fff",
+  fontWeight: "bold" as const,
   cursor: "pointer",
+  width: "100%",
+};
+
+const successWrap = {
+  textAlign: "center" as const,
+  padding: "30px",
+  borderRadius: "20px",
+  background: "#0f0f0f",
+  border: "1px solid rgba(255,255,255,0.1)",
+};
+
+const successTitle = {
+  fontSize: "1.9rem",
+  fontWeight: "800",
+  marginBottom: "12px",
+  color: "#fff",
+  lineHeight: "1.2",
+};
+
+const successText = {
+  color: "#d1d5db",
+  marginBottom: "10px",
+  lineHeight: "1.6",
+};
+
+const successSub = {
+  fontSize: "0.95rem",
+  color: "#b3b3b3",
+  lineHeight: "1.6",
+  marginBottom: "10px",
+};
+
+const trustText = {
+  fontSize: "0.9rem",
+  color: "#8f8f8f",
+  marginBottom: "18px",
+  lineHeight: "1.5",
+};
+
+const successStrong = {
+  color: "#fff",
+};
+
+const ctaBlock = {
+  marginTop: "10px",
+};
+
+const urgentText = {
+  color: "#fff",
+  fontWeight: "700",
+  marginBottom: "12px",
+};
+
+const callButton = {
   display: "inline-block",
+  padding: "14px 22px",
+  borderRadius: "12px",
+  background: "#e11d1d",
+  color: "#fff",
+  textDecoration: "none",
+  fontWeight: "700",
+  marginBottom: "10px",
+};
+
+const phoneText = {
+  fontSize: "0.95rem",
+  color: "#d1d5db",
+  marginBottom: "8px",
+};
+
+const emailText = {
+  fontSize: "0.9rem",
+  color: "#9ca3af",
+  lineHeight: "1.5",
 };
